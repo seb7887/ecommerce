@@ -27,7 +27,7 @@ exports.devServer = ({ host, port } = {}) => ({
     port,
     hot: true
   }
-}) 
+})
 
 exports.loadTypescript = ({ include, exclude } = {}) => ({
   module: {
@@ -38,6 +38,22 @@ exports.loadTypescript = ({ include, exclude } = {}) => ({
         exclude,
         use: {
           loader: 'babel-loader'
+        }
+      }
+    ]
+  }
+})
+
+exports.loadFiles = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(eot|webp|ttf|woff|woff2)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[hash:4].[ext]'
+          }
         }
       }
     ]
@@ -70,12 +86,12 @@ exports.minifyCss = ({ options }) => ({
       canPrint: false
     })
   ]
-});
+})
 
 exports.extractCss = ({ include, exclude, use = [] }) => {
   const plugin = new MiniCssExtractPlugin({
     filename: '[name].[contenthash:4].css'
-  });
+  })
 
   return {
     module: {
@@ -89,15 +105,15 @@ exports.extractCss = ({ include, exclude, use = [] }) => {
       ]
     },
     plugins: [plugin]
-  };
-};
+  }
+}
 
 exports.autoprefix = () => ({
   loader: 'postcss-loader',
   options: {
     plugins: () => [require('autoprefixer')()]
   }
-});
+})
 
 exports.purifyCss = ({ paths }) => ({
   plugins: [
@@ -106,7 +122,7 @@ exports.purifyCss = ({ paths }) => ({
       minimize: true
     })
   ]
-});
+})
 
 exports.moduleConcatenation = () => ({
   plugins: [new webpack.optimize.ModuleConcatenationPlugin()]

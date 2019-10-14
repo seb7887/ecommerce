@@ -4,7 +4,8 @@ const { PATHS } = require('./build-utils/paths')
 const merge = require('webpack-merge')
 
 const commonConfig = merge([
-  parts.loadTypescript({ include: PATHS.entry, exclude: /node_modules/ })
+  parts.loadTypescript({ include: PATHS.entry, exclude: /node_modules/ }),
+  parts.loadFiles()
 ])
 
 module.exports = ({ mode }) => {
@@ -25,7 +26,7 @@ module.exports = ({ mode }) => {
           filename: 'index.html',
           template: PATHS.html
         })
-      ],
+      ]
     },
     commonConfig,
     modeConfig
