@@ -1,11 +1,13 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
-import { Homepage } from './pages'
+import { Homepage, Shop } from './pages'
 
 const App: React.FC = () => (
-  <div>
-    <Homepage />
-  </div>
+  <Switch>
+    <Route exact path="/" component={Homepage} />
+    <Route path="/shop" component={Shop} />
+  </Switch>
 )
 
 export default App
