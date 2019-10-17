@@ -40,5 +40,17 @@ module.exports = merge([
   parts.purifyCss({
     paths: glob.sync(`${PATHS.entry}/**/*.tsx`, { nodir: true })
   }),
+  parts.loadImages({
+    options: {
+      limit: 15000,
+      name: '[name].[hash:4].[ext]'
+    }
+  }),
+  parts.loadSvg({
+    options: {
+      limit: 15000,
+      name: '[name].[hash:4].[ext]'
+    }
+  }),
   parts.moduleConcatenation()
 ])

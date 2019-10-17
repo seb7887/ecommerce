@@ -60,6 +60,43 @@ exports.loadFiles = () => ({
   }
 })
 
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|gif|jpe?g)$/,
+        include,
+        exclude,
+        use: {
+          loader: 'url-loader',
+          options
+        }
+      }
+    ]
+  }
+})
+
+exports.loadSvg = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        include,
+        exclude,
+        use: [
+          {
+            loader: 'file-loader',
+            options
+          },
+          {
+            loader: 'image-webpack-loader'
+          }
+        ]
+      }
+    ]
+  }
+})
+
 exports.loadSass = ({ include }) => ({
   module: {
     rules: [

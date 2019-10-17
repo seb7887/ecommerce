@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MenuItem: React.FC<ItemData> = ({ title, imageUrl, size }) => (
+const MenuItem: React.FC<SectionData> = ({ title, imageUrl, size }) => (
   <div className={`${size} menu-item`}>
     <div
       className="background-image"

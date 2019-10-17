@@ -3,7 +3,7 @@ import React from 'react'
 import MenuItem from '../MenuItem'
 
 interface Props {
-  sections: ItemData[]
+  sections: SectionData[]
 }
 
 const Directory: React.FC<Props> = ({ sections }) => (

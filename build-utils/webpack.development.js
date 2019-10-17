@@ -7,5 +7,7 @@ module.exports = merge([
     host: process.env.HOST,
     port: 3000
   }),
-  parts.loadSass({ include: PATHS.styles })
+  parts.loadSass({ include: PATHS.styles }),
+  parts.loadImages(),
+  parts.loadSvg()
 ])

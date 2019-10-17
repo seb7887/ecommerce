@@ -1,10 +1,24 @@
+declare module '*.svg'
+declare module '*.png'
+declare module '*.jpg'
+declare module '*.jpeg'
+declare module '*.gif'
+declare module '*.bmp'
+declare module '*.tiff'
+
+interface SectionData {
+  id: number
+  title: string
+  imageUrl: string
+  linkUrl: string
+  size?: string
+}
+
 interface ItemData {
   id: number
-  title?: string
+  name: string
   imageUrl: string
-  linkUrl?: string
-  size?: string
-  price?: number
+  price: number
 }
 
 interface ShopData {
