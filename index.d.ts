@@ -27,3 +27,8 @@ interface ShopData {
   routeName: string
   items: ItemData[]
 }
+
+interface Credentials {
+  email: string
+  password: string
+}
