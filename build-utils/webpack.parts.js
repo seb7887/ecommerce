@@ -1,5 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const cssnano = require('cssnano')
+const dotenv = require('dotenv')
+const _ = require('lodash')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const PurifyCssPlugin = require('purifycss-webpack')
@@ -11,8 +13,13 @@ exports.clean = () => ({
 })
 
 exports.environment = ({ env }) => {
+  const environmentVariables = {}
+  _.each(dotenv.config(), (value, key) => {
+    environmentVariables[`process.env.${key}`] = JSON.stringify(value)
+  })
   const plugin = new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(env)
+    'process.env.NODE_ENV': JSON.stringify(env),
+    ...environmentVariables
   })
 
   return {

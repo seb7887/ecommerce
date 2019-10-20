@@ -15,11 +15,14 @@
     ]
   },
   "scripts": {
+    "firebase-login": "firebase login",
+    "firebase-init": "firebase init",
     "build": "webpack --env.mode production -p",
     "dev": "webpack-dev-server --env.mode development",
     "prestart": "npm run build",
     "start": "serve -s dist",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy"
   },
   "husky": {
     "hooks": {
@@ -49,8 +52,10 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
+    "dotenv": "^8.2.0",
     "fast-sass-loader": "^1.5.0",
     "file-loader": "^4.2.0",
+    "firebase-tools": "^7.6.1",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.8",
     "image-webpack-loader": "^6.0.0",
@@ -80,6 +85,8 @@
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "@types/react-router-dom": "^5.1.0",
+    "firebase": "^7.2.1",
+    "lodash": "^4.17.15",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router-dom": "^5.1.2"
