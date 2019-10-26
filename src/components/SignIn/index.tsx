@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { auth, signInWithGoogle } from '../../firebase'
 import Button from '../Button'
 import FormInput from '../FormInput'
 
@@ -9,15 +10,22 @@ const SignIn: React.FC = () => {
     password: ''
   })
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
+    const { email, password } = credentials
 
-    console.log(credentials)
+    try {
+      await auth.signInWithEmailAndPassword(email, password)
+    } catch (err) {
+      // TODO: error message
+      console.log(err.message)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setCredentials({ ...credentials, [name]: value })
   }
 
   return (
@@ -28,6 +36,7 @@ const SignIn: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <FormInput
           type="email"
+          name="email"
           className="form-input"
           id="email"
           label="Email"
@@ -37,6 +46,7 @@ const SignIn: React.FC = () => {
         />
         <FormInput
           type="password"
+          name="password"
           className="form-input"
           id="password"
           label="Password"
@@ -47,6 +57,9 @@ const SignIn: React.FC = () => {
         <div className="buttons-bar-container">
           <Button type="submit" value="Submit Form">
             Sign In
+          </Button>
+          <Button type="button" onClick={signInWithGoogle} isGoogleSignIn>
+            Sign In With Google
           </Button>
         </div>
       </form>

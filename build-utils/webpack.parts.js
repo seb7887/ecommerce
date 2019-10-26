@@ -14,7 +14,7 @@ exports.clean = () => ({
 
 exports.environment = ({ env }) => {
   const environmentVariables = {}
-  _.each(dotenv.config(), (value, key) => {
+  _.each(dotenv.config().parsed, (value, key) => {
     environmentVariables[`process.env.${key}`] = JSON.stringify(value)
   })
   const plugin = new webpack.DefinePlugin({
@@ -32,7 +32,8 @@ exports.devServer = ({ host, port } = {}) => ({
     stats: 'errors-only',
     host,
     port,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   }
 })
 

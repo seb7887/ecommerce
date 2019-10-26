@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { auth } from '../../firebase'
 import Button from '../Button'
 import FormInput from '../FormInput'
 
@@ -16,15 +17,21 @@ const SignUp: React.FC = () => {
     confirmPassword: ''
   })
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
+    const { email, password, confirmPassword } = credentials
 
-    if (credentials.password !== credentials.confirmPassword) {
+    if (password !== confirmPassword) {
       alert("Passwords don't match")
       return
     }
 
-    console.log(credentials)
+    try {
+      await auth.createUserWithEmailAndPassword(email, password)
+    } catch (err) {
+      // TODO: error message
+      console.log(err.message)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +47,7 @@ const SignUp: React.FC = () => {
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
           type="text"
-          name={credentials.displayName}
+          name="displayName"
           value={credentials.displayName}
           onChange={handleChange}
           label="Display Name"
@@ -64,7 +71,7 @@ const SignUp: React.FC = () => {
         />
         <FormInput
           type="password"
-          name="confirm-password"
+          name="confirmPassword"
           value={credentials.confirmPassword}
           onChange={handleChange}
           label="Confirm Password"

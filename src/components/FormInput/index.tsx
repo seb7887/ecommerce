@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from 'react'
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  onChange: (data: any) => void
+  onChange: (data: any) => any
   label?: string
 }
 
