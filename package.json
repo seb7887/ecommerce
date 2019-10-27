@@ -16,6 +16,7 @@
   },
   "scripts": {
     "firebase-login": "firebase login",
+    "firebase-login:ci": "firebase login:ci",
     "firebase-init": "firebase init",
     "build": "webpack --env.mode production -p",
     "dev": "webpack-dev-server --env.mode development",
