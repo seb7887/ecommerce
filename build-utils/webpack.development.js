@@ -8,6 +8,7 @@ module.exports = merge([
     host: process.env.HOST,
     port: 3000
   }),
+  parts.generateSourceMaps({ type: 'source-map' }),
   parts.loadSass({ include: PATHS.styles }),
   parts.loadImages(),
   parts.loadSvg()

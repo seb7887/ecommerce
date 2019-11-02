@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const parts = require('./build-utils/webpack.parts')
 const { PATHS } = require('./build-utils/paths')
 const merge = require('webpack-merge')
@@ -25,7 +26,8 @@ module.exports = ({ mode }) => {
         new HtmlWebpackPlugin({
           filename: 'index.html',
           template: PATHS.html
-        })
+        }),
+        new CopyWebpackPlugin([{ from: PATHS.favicon, to: PATHS.output }])
       ]
     },
     commonConfig,

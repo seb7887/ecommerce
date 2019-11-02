@@ -55,10 +55,10 @@ const SignIn: React.FC = () => {
           required
         />
         <div className="buttons-bar-container">
-          <Button type="submit" value="Submit Form">
+          <Button type="submit" value="Submit Form" buttontype="normal">
             Sign In
           </Button>
-          <Button type="button" onClick={signInWithGoogle} isGoogleSignIn>
+          <Button type="button" onClick={signInWithGoogle} buttontype="google">
             Sign In With Google
           </Button>
         </div>

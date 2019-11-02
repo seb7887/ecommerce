@@ -2,13 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '../../assets/images/crown.svg'
+import CartIcon from '../CartIcon'
+import CartDropdown from '../CartDropdown'
 
 interface Props {
   currentUser: User | null
+  hidden: boolean
   onSignOut: () => void
 }
 
-const Header: React.FC<Props> = ({ currentUser, onSignOut }) => (
+const Header: React.FC<Props> = ({ currentUser, hidden, onSignOut }) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <img className="logo" src={logo} alt="Logo" />
@@ -29,7 +32,9 @@ const Header: React.FC<Props> = ({ currentUser, onSignOut }) => (
           SIGN OUT
         </div>
       )}
+      <CartIcon />
     </div>
+    {hidden && <CartDropdown />}
   </div>
 )
 

@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
+import { useMappedState, useDispatch } from 'redux-react-hook'
 
 import firebase, { auth, createUserProfile } from './firebase'
 import { Homepage, Shop, Login } from './pages'
 import { Header } from './components'
+import { setCurrentUser, selectCurrentUser } from './store/users'
+import { ReduxState } from './types'
+
+const mapState = (state: ReduxState) => ({
+  currentUser: selectCurrentUser(state)
+})
 
 const App: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const { currentUser } = useMappedState(mapState)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     auth.onAuthStateChanged(async userAuth => {
@@ -16,10 +24,12 @@ const App: React.FC = () => {
         if (userRef) {
           userRef.onSnapshot(
             (snapshot: firebase.firestore.DocumentSnapshot) => {
-              setCurrentUser({
-                id: snapshot.id,
-                ...snapshot.data()
-              })
+              dispatch(
+                setCurrentUser({
+                  id: snapshot.id,
+                  ...snapshot.data()
+                })
+              )
             }
           )
         }

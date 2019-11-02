@@ -172,3 +172,7 @@ exports.purifyCss = ({ paths }) => ({
 exports.moduleConcatenation = () => ({
   plugins: [new webpack.optimize.ModuleConcatenationPlugin()]
 })
+
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type
+})

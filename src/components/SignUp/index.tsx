@@ -77,7 +77,9 @@ const SignUp: React.FC = () => {
           label="Confirm Password"
           required
         />
-        <Button type="submit">SIGN UP</Button>
+        <Button type="submit" buttontype="normal">
+          SIGN UP
+        </Button>
       </form>
     </div>
   )
