@@ -1,6 +1,7 @@
 import { Reducer } from 'redux'
 
 import { ADD_ITEM, TOGGLE_CART_HIDDEN } from './constants'
+import { addItemToCart } from './utils'
 
 interface CartState {
   hidden: boolean
@@ -25,7 +26,7 @@ export const cartReducer: Reducer<CartState> = (
     case ADD_ITEM:
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload]
+        cartItems: addItemToCart(state.cartItems, action.payload)
       }
     default:
       return state

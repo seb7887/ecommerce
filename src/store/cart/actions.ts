@@ -7,5 +7,5 @@ export const toggleCartHidden = createAction(TOGGLE_CART_HIDDEN, resolve => {
 })
 
 export const addItem = createAction(ADD_ITEM, resolve => {
-  return (item: CartItem) => resolve({ item })
+  return (item: CartItem) => resolve(item)
 })
