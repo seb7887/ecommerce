@@ -5,8 +5,8 @@
   "main": "index.js",
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tslint",
       "prettier --write",
+      "tslint",
       "git add"
     ],
     ".{js,jsx,json,css,md}": [

@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { useMappedState, useDispatch } from 'redux-react-hook'
 
 import firebase, { auth, createUserProfile } from './firebase'
-import { Homepage, Shop, Login } from './pages'
+import { Homepage, Shop, Login, Checkout } from './pages'
 import { Header } from './components'
 import { setCurrentUser, selectCurrentUser } from './store/users'
 import { ReduxState } from './types'
@@ -43,7 +43,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Header currentUser={currentUser} onSignOut={signOut} />
+      <Header onSignOut={signOut} />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/shop" component={Shop} />
@@ -51,6 +51,7 @@ const App: React.FC = () => {
           path="/login"
           render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
         />
+        <Route path="/checkout" component={Checkout} />
       </Switch>
     </>
   )

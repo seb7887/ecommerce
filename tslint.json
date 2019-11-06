@@ -13,7 +13,8 @@
     "member-access": false,
     "no-unused-variable": true,
     "no-unused-expression": true,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "no-empty-interface": false
   },
   "linterOptions": {
     "exclude": ["node_modules/**/*.ts", "*.json", "**/*.json"]
