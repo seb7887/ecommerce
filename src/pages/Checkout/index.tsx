@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMappedState } from 'redux-react-hook'
 
-import { CheckoutItem } from '../../components'
+import { CheckoutItem, StripeButton } from '../../components'
 import { selectCartItems, selectCartTotal } from '../../store/cart'
 import { ReduxState } from '../../types'
 
@@ -36,6 +36,12 @@ const Checkout: React.FC = () => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <div className="total">TOTAL: ${total}</div>
+      <div className="test-warning">
+        *Please use the following test credit card for payments*
+        <br />
+        42424 4242 4242 4242 - Exp: 01/20 - CVV: 123
+      </div>
+      <StripeButton price={total} />
     </div>
   )
 }

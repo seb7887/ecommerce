@@ -1,4 +1,5 @@
 export { default as Homepage } from './Homepage'
+export { default as Collection } from './Collection'
 export { default as Shop } from './Shop'
 export { default as Login } from './Login'
 export { default as Checkout } from './Checkout'

@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { Route, RouteComponentProps } from 'react-router-dom'
 
-import SHOP_DATA from '../../shop-data'
+import { CollectionsOverview } from '../../components'
+import Collection from '../Collection'
 
-import { CollectionPreview } from '../../components'
+interface Props extends RouteComponentProps<any> {}
 
-const Shop: React.FC = () => {
-  const [collections, setCollections] = useState<ShopData[]>([])
-
-  useEffect(() => {
-    setCollections(SHOP_DATA)
-  }, [])
-
-  return (
-    <div className="shop">
-      {collections.map(({ id, ...otherProps }) => (
-        <CollectionPreview key={id} {...otherProps} />
-      ))}
-    </div>
-  )
-}
+const Shop: React.FC<Props> = ({ match }) => (
+  <div className="shop">
+    <Route exact path={`${match.path}`} component={CollectionsOverview} />
+    <Route path={`${match.path}/:collectionId`} component={Collection} />
+  </div>
+)
 
 export default Shop

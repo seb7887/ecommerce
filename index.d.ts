@@ -28,6 +28,10 @@ interface ShopData {
   items: ItemData[]
 }
 
+interface CollectionData {
+  [key: string]: ShopData
+}
+
 interface Credentials {
   email: string
   password: string
