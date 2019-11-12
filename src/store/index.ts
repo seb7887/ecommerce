@@ -1,14 +1,15 @@
 import { applyMiddleware, compose, createStore } from 'redux'
+import { persistStore } from 'redux-persist'
 import { createLogger } from 'redux-logger'
 
-import { rootReducer } from './reducers'
+import rootReducer from './reducers'
 
 const loggerMiddleware = createLogger({
   collapsed: true,
   duration: true
 })
 
-export const configureStore = (initialState = {}) => {
+const configureStore = (initialState = {}) => {
   const middlewares = []
   if (process.env.NODE_ENV === 'development') {
     middlewares.push(loggerMiddleware)
@@ -17,3 +18,7 @@ export const configureStore = (initialState = {}) => {
   const store = createStore(rootReducer, initialState, enhancer)
   return store
 }
+
+export const store = configureStore()
+
+export const persistor = persistStore(store)
