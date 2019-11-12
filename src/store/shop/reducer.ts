@@ -1,13 +1,13 @@
 import { Reducer } from 'redux'
 
-import { SHOP_DATA } from './data'
+import { UPDATE_COLLECTIONS } from './constants'
 
 interface ShopState {
-  collections: CollectionData
+  collections: CollectionData | null
 }
 
 const initialState: ShopState = {
-  collections: SHOP_DATA
+  collections: null
 }
 
 export const shopReducer: Reducer<ShopState> = (
@@ -15,6 +15,11 @@ export const shopReducer: Reducer<ShopState> = (
   action
 ): ShopState => {
   switch (action.type) {
+    case UPDATE_COLLECTIONS:
+      return {
+        ...state,
+        collections: action.payload
+      }
     default:
       return state
   }
